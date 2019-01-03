@@ -1,0 +1,32 @@
+<!-- NG-ZORRO -->
+<nz-layout class="layout">
+  <nz-header>
+    <div class="logo"></div>
+    <ul nz-menu [nzTheme]="'dark'" [nzMode]="'horizontal'" style="line-height: 64px;">
+      <li nz-menu-item>nav 1</li>
+      <li nz-menu-item>nav 2</li>
+      <li nz-menu-item>nav 3</li>
+    </ul>
+  </nz-header>
+  <nz-content style="padding:0 50px;">
+    <nz-breadcrumb style="margin:16px 0;">
+      选择你的方式：
+      <nz-breadcrumb-item>
+          <nz-tag nzMode="checkable" [(nzChecked)]="types._0" (nzCheckedChange)="checkChange($event)">30M</nz-tag>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>
+          <nz-tag nzMode="checkable" [(nzChecked)]="types._1" (nzCheckedChange)="checkChange($event)">WS</nz-tag>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>
+          <nz-tag nzMode="checkable" [(nzChecked)]="types._2" (nzCheckedChange)="checkChange($event)">BS</nz-tag>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>
+          <nz-tag nzMode="checkable" [(nzChecked)]="types._3" (nzCheckedChange)="checkChange($event)">7X</nz-tag>
+      </nz-breadcrumb-item>
+    </nz-breadcrumb>
+    <div style="background:#fff; padding: 24px; min-height: 280px;">
+      <app-spiders-list #spider></app-spiders-list>
+    </div>
+  </nz-content>
+  <nz-footer style="text-align: center;">Ant Design ©2017 Implement By Angular</nz-footer>
+</nz-layout>

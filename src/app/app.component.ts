@@ -13,9 +13,15 @@ const spidersDataUrl = 'https://randomuser.me/api/?results=10&inc=name,gender,em
 export class AppComponent {
   @ViewChild('spider')
   spiderList: ListComponent;
-  types = {'_0': true, '_1': true, '_2': true, '_3': true };
+  types = {'_0': true, '_1': true, '_2': true, '_3': false };
+  isLoadingOne = false;
 
   checkChange(e: boolean): void {
+    // tag改变
+  }
+
+  loadOne(): void {
+    this.isLoadingOne = true;
     let p_type = '';
     if (this.types._0) {
       p_type += '0,';
@@ -31,7 +37,8 @@ export class AppComponent {
     }
     p_type = p_type.substring(0, p_type.length - 1);
     if (p_type) {
-      this.spiderList.loadData('10');
+      this.spiderList.loadData(p_type);
     }
+    this.isLoadingOne = false;
   }
 }

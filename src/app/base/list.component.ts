@@ -17,7 +17,7 @@ import { NzMessageService } from 'ng-zorro-antd';
       <nz-list-item [nzContent]="item.loading?'':''" [nzActions]="item.loading?[]:[editAction,moreAction]">
         <nz-skeleton [nzAvatar]="true" [nzActive]="true" [nzLoading]="item.loading">
           <ng-template #editAction>
-            <div style="width:30px; height:30px; border-radius:25px;" *ngIf="item.info"
+            <div style="width:30px; height:30px; border-radius:25px;" *ngIf="item.info?.tm"
               [ngStyle]="{'background-color':item.info?.bs == '红波' ? 'red' :
                 (item.info?.bs == '蓝波' ? 'blue' : (item.info?.bs == '绿波' ? 'green' : 'yellow')) }">
               <span style="height:30px; line-height:30px; display:block; color:#FFF; text-align:center">{{item.info?.tm}}</span>
@@ -30,7 +30,7 @@ import { NzMessageService } from 'ng-zorro-antd';
           </ng-template>
           <nz-list-item-meta
             [nzTitle]="nzTitle"
-            nzAvatar="../../assets/{{item.info ? (item.bingo ? 'y.png' : 'x.png') : 'w.png'}}"
+            nzAvatar="../../assets/{{item.info?.tm ? (item.bingo ? 'y.png' : 'x.png') : 'w.png'}}"
             nzDescription="{{item.cc}}">
             <ng-template #nzTitle>
               {{item.id}}

@@ -56,7 +56,7 @@ export class ListComponent {
   constructor(private http: HttpClient, private msg: NzMessageService) {}
 
   loadData(types: string) {
-    this.fakeDataUrl = 'http://127.0.0.1:5000/lhc_flask/ps?types=' + types;
+    this.fakeDataUrl = '/lhc_flask/ps?types=' + types;
     this.getData((res: any) => {
         this.list = res;
         this.initLoading = false;

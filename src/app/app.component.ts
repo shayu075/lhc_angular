@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { ListComponent } from './base/list.component';
 const spidersDataUrl = 'https://randomuser.me/api/?results=10&inc=name,gender,email,nat&noinfo';
 
@@ -10,11 +10,15 @@ const spidersDataUrl = 'https://randomuser.me/api/?results=10&inc=name,gender,em
 
 
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   @ViewChild('spider')
   spiderList: ListComponent;
   types = {'_0': true, '_1': true, '_2': true, '_3': false };
   isLoadingOne = false;
+
+  ngOnInit(): void {
+    this.spiderList.loadData('0,1,2');
+  }
 
   checkChange(e: boolean): void {
     // tag改变

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
 
 
@@ -47,17 +47,13 @@ import { NzMessageService } from 'ng-zorro-antd';
   }
   ` ]
 })
-export class ListComponent implements OnInit {
+export class ListComponent {
   initLoading = true; // bug
   list = [];
   // fakeDataUrl = 'https://randomuser.me/api/?results=10&inc=name,gender,email,nat&noinfo';
   fakeDataUrl = '';
 
   constructor(private http: HttpClient, private msg: NzMessageService) {}
-
-  ngOnInit(): void {
-    this.loadData('0,1,2');
-  }
 
   loadData(types: string) {
     this.fakeDataUrl = 'http://127.0.0.1:5000/lhc_flask/ps?types=' + types;

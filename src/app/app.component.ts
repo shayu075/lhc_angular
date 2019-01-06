@@ -13,15 +13,11 @@ const spidersDataUrl = 'https://randomuser.me/api/?results=10&inc=name,gender,em
 export class AppComponent implements OnInit {
   @ViewChild('spider')
   spiderList: ListComponent;
-  types = {'_0': true, '_1': true, '_2': true, '_3': false };
+  types = {'_0': true, '_1': true, '_2': true, '_3': false, '_4': false};
   isLoadingOne = false;
 
   ngOnInit(): void {
     this.spiderList.loadData('0,1,2');
-  }
-
-  checkChange(e: boolean): void {
-    // tag改变
   }
 
   loadOne(): void {
@@ -38,6 +34,9 @@ export class AppComponent implements OnInit {
     }
     if (this.types._3) {
       p_type += '3,';
+    }
+    if (this.types._4) {
+      p_type += '4,';
     }
     p_type = p_type.substring(0, p_type.length - 1);
     if (p_type) {

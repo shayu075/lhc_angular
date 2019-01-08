@@ -5,7 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { AppComponent } from './app.component';
+import { ChartsModule } from 'ng2-charts';
 import { ListComponent } from './base/list.component';
+import { LineChartComponent } from './base/chart.component';
 
 /** 配置 angular i18n **/
 import { registerLocaleData } from '@angular/common';
@@ -15,13 +17,15 @@ registerLocaleData(zh);
 @NgModule({
   declarations: [
     AppComponent,
-    ListComponent
+    ListComponent,
+    LineChartComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    ChartsModule,
     /** 导入 ng-zorro-antd 模块 **/
     NgZorroAntdModule
   ],

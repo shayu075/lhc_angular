@@ -1,6 +1,8 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { NzMessageService } from 'ng-zorro-antd';
 import { ListComponent } from './base/list.component';
-const spidersDataUrl = 'https://randomuser.me/api/?results=10&inc=name,gender,email,nat&noinfo';
+import { LineChartComponent } from './base/chart.component';
 
 @Component({
   selector: 'app-root',
@@ -11,13 +13,20 @@ const spidersDataUrl = 'https://randomuser.me/api/?results=10&inc=name,gender,em
 
 
 export class AppComponent implements OnInit {
+  constructor(private http: HttpClient, private msg: NzMessageService) {}
+
   @ViewChild('spider')
   spiderList: ListComponent;
+  @ViewChild('lineChart')
+  lineChartComponent: LineChartComponent;
+
   types = {'_0': true, '_1': true, '_2': true, '_3': false, '_4': false};
   isLoadingOne = false;
+  // 数据地址
+  fakeDataUrl = '';
 
   ngOnInit(): void {
-    this.spiderList.loadData('0,1,2');
+    this.loadSpidersDate('0,1,2');
   }
 
   loadOne(): void {
@@ -40,8 +49,25 @@ export class AppComponent implements OnInit {
     }
     p_type = p_type.substring(0, p_type.length - 1);
     if (p_type) {
-      this.spiderList.loadData(p_type);
+      this.loadSpidersDate(p_type);
     }
     this.isLoadingOne = false;
   }
+
+
+  getData(callback: (res: any) => void): void {
+    this.http.get(this.fakeDataUrl).subscribe((res: any) => callback(res));
+  }
+
+  loadSpidersDate(p_type: string): void {
+    this.fakeDataUrl = '/lhc_flask/ps?types=' + p_type;
+      this.getData((res: any) => {
+        this.spiderList.list = res;
+        this.spiderList.initLoading = false;
+        this.lineChartComponent.randomize(res);
+      });
+  }
+
 }
+
+

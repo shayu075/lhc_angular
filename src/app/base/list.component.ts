@@ -1,6 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { NzMessageService } from 'ng-zorro-antd';
 
 
 @Component({
@@ -51,22 +49,6 @@ import { NzMessageService } from 'ng-zorro-antd';
 export class ListComponent {
   initLoading = true; // bug
   list = [];
-  // fakeDataUrl = 'https://randomuser.me/api/?results=10&inc=name,gender,email,nat&noinfo';
-  fakeDataUrl = '';
-
-  constructor(private http: HttpClient, private msg: NzMessageService) {}
-
-  loadData(types: string) {
-    this.fakeDataUrl = '/lhc_flask/ps?types=' + types;
-    this.getData((res: any) => {
-        this.list = res;
-        this.initLoading = false;
-      });
-  }
-
-  getData(callback: (res: any) => void): void {
-    this.http.get(this.fakeDataUrl).subscribe((res: any) => callback(res));
-  }
 
 
 }

@@ -20,6 +20,7 @@ export class LineChartComponent implements OnInit {
   @Input() master: Array<any>;
 
   ngOnInit() {
+    console.log('===============LineChartComponent:ngOnInit()============')
     this.lineChartData = [
       { data: [], label: '' }
     ];

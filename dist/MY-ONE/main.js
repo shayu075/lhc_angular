@@ -516,6 +516,7 @@ var LineChartComponent = /** @class */ (function () {
         this.lineChartType = 'line';
     }
     LineChartComponent.prototype.ngOnInit = function () {
+        console.log('===============LineChartComponent:ngOnInit()============');
         this.lineChartData = [
             { data: [], label: '' }
         ];

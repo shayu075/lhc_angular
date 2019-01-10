@@ -20,9 +20,9 @@ export class LineChartComponent implements OnInit {
   @Input() master: Array<any>;
 
   ngOnInit() {
-    console.log('===============LineChartComponent:ngOnInit()============')
     this.lineChartData = [
-      { data: [], label: '' }
+      { data: [], label: '1248累计收益（1元/注）' },
+      { data: [], label: '定投累计收益（1元/注）' }
     ];
     this.lineChartLabels = [];
     this.lineChartOptions = {
@@ -58,23 +58,38 @@ export class LineChartComponent implements OnInit {
 
   public randomize(res: Array<any>): void {
     const _lineChartDataObject: Array<any> = new Array();
+    const _1248lineChartDataObject: Array<any> = new Array();
     const _lineChartLabels: Array<any> = new Array();
     let sy_tmp: any = 0;
+    const _1248_ru = [1, 2, 4, 8];
+    let _1248_step = 0;
+    let _1248_sy = 0;
     for (let i = res.length - 1; i > -1; i--) {
       if (res[i].info && res[i].info.tm) {
         sy_tmp = sy_tmp - res[i].cc.length;
+        _1248_sy = _1248_sy - (res[i].cc.length * _1248_ru[_1248_step]);
         if (res[i].bingo) {
-          sy_tmp = 49.2 + sy_tmp;
+          sy_tmp = 49 + sy_tmp;
+          _1248_sy = _1248_ru[_1248_step] * 49 + _1248_sy;
+          if (_1248_step > 0) {
+            _1248_step -= 1;
+          }
+        } else {
+          if (_1248_step < 3) {
+            _1248_step += 1;
+          }
         }
         _lineChartDataObject.push(sy_tmp);
-        _lineChartLabels.push(res[i].id);
+        _1248lineChartDataObject.push(_1248_sy);
+        _lineChartLabels.push(res[i].id.slice(-3));
       }
     }
     this.lineChartLabels = _lineChartLabels;
     const that = this;
     setTimeout(function () {
       that.lineChartData = [
-        { data: _lineChartDataObject, label: '累计收益（1元/注）' }
+        { data: _1248lineChartDataObject, label: '1248累计收益（1元/注）' },
+        { data: _lineChartDataObject, label: '定投累计收益（1元/注）' }
       ];
     }, 500);
   }

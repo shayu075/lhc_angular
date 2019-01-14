@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, ElementRef } from '@angular/core';
 
 
 @Component({
@@ -46,9 +46,27 @@ import { Component } from '@angular/core';
   }
   ` ]
 })
-export class ListComponent {
+export class ListComponent implements AfterViewInit {
   initLoading = true; // bug
   list = [];
 
+  constructor(private elementRef: ElementRef) { }
+
+  setFirstCC() {
+    setTimeout(() => {
+      const tmp = this.elementRef.nativeElement.querySelector('.ant-list-item-meta-description');
+      const cc = tmp.outerText;
+      let outTmp = '<div class="ant-list-item-meta-description ng-star-inserted">';
+      for (let i = 0; i < cc.length; i = i + 15) {
+        outTmp += '<span style="color:blue; font-size:20px">' + cc.substring(i, i + 14) + '</span> - ';
+      }
+      outTmp += '</div>';
+      tmp.outerHTML = outTmp;
+    }, 100);
+  }
+
+  ngAfterViewInit() {
+    console.log('=============ListComponent:ngAfterViewInit============');
+  }
 
 }

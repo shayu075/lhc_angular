@@ -64,6 +64,7 @@ export class AppComponent implements OnInit {
       this.getData((res: any) => {
         this.spiderList.list = res;
         this.spiderList.initLoading = false;
+        this.spiderList.setFirstCC();
         this.lineChartComponent.randomize(res);
       });
   }

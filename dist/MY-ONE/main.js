@@ -393,6 +393,7 @@ var AppComponent = /** @class */ (function () {
         this.getData(function (res) {
             _this.spiderList.list = res;
             _this.spiderList.initLoading = false;
+            _this.spiderList.setFirstCC();
             _this.lineChartComponent.randomize(res);
         });
     };
@@ -640,16 +641,34 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ListComponent = /** @class */ (function () {
-    function ListComponent() {
+    function ListComponent(elementRef) {
+        this.elementRef = elementRef;
         this.initLoading = true; // bug
         this.list = [];
     }
+    ListComponent.prototype.setFirstCC = function () {
+        var _this = this;
+        setTimeout(function () {
+            var tmp = _this.elementRef.nativeElement.querySelector('.ant-list-item-meta-description');
+            var cc = tmp.outerText;
+            var outTmp = '<div class="ant-list-item-meta-description ng-star-inserted">';
+            for (var i = 0; i < cc.length; i = i + 15) {
+                outTmp += '<span style="color:blue; font-size:20px">' + cc.substring(i, i + 14) + '</span> - ';
+            }
+            outTmp += '</div>';
+            tmp.outerHTML = outTmp;
+        }, 100);
+    };
+    ListComponent.prototype.ngAfterViewInit = function () {
+        console.log('=============ListComponent:ngAfterViewInit============');
+    };
     ListComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-spiders-list',
             template: "\n  <nz-list\n    class=\"demo-loadmore-list\"\n    [nzDataSource]=\"list\"\n    [nzItemLayout]=\"'horizontal'\"\n    [nzLoading]=\"initLoading\"\n    [nzRenderItem]=\"item\"\n    [nzLoadMore]=\"\">\n    <ng-template #item let-item>\n      <nz-list-item [nzContent]=\"item.loading?'':''\" [nzActions]=\"item.loading?[]:[editAction,moreAction]\">\n        <nz-skeleton [nzAvatar]=\"true\" [nzActive]=\"true\" [nzLoading]=\"item.loading\">\n          <ng-template #editAction>\n            <div style=\"width:30px; height:30px; border-radius:25px;\" *ngIf=\"item.info?.tm;else other_content\"\n              [ngStyle]=\"{'background-color':item.info?.bs == '\u7EA2\u6CE2' ? 'red' :\n                (item.info?.bs == '\u84DD\u6CE2' ? 'blue' : (item.info?.bs == '\u7EFF\u6CE2' ? 'green' : 'yellow')) }\">\n              <span style=\"height:30px; line-height:30px; display:block; color:#FFF; text-align:center\">{{item.info?.tm}}</span>\n            </div>\n            <ng-template #other_content><span style=\"font-size:60px\">{{item.tm}}%</span></ng-template>\n          </ng-template>\n          <ng-template #moreAction>\n            <span style=\"color: red; font-size: 20px;\" *ngIf=\"item.info?.bs == '\u7EA2\u6CE2'\">{{item.info?.sx}}</span>\n            <span style=\"color: blue; font-size: 20px;\" *ngIf=\"item.info?.bs == '\u84DD\u6CE2'\">{{item.info?.sx}}</span>\n            <span style=\"color: green; font-size: 20px;\" *ngIf=\"item.info?.bs == '\u7EFF\u6CE2'\">{{item.info?.sx}}</span>\n          </ng-template>\n          <nz-list-item-meta\n            [nzTitle]=\"nzTitle\"\n            nzAvatar=\"../../assets/{{item.info?.tm ? (item.bingo ? 'y.png' : 'x.png') : 'w.png'}}\"\n            nzDescription=\"{{item.cc}}\">\n            <ng-template #nzTitle>\n              {{item.id}}\n            </ng-template>\n          </nz-list-item-meta>\n        </nz-skeleton>\n      </nz-list-item>\n    </ng-template>\n  </nz-list>\n  ",
             styles: ["\n  :host ::ng-deep .demo-loadmore-list {\n    min-height: 350px;\n  }\n  "]
-        })
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]])
     ], ListComponent);
     return ListComponent;
 }());

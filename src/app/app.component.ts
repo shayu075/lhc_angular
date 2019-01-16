@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   lineChartComponent: LineChartComponent;
 
   types = {'_0': true, '_1': true, '_2': true, '_3': false, '_4': false};
-  date = new Date(2018, 0, 1);
+  date = new Date(2019, 0, 1);
   isLoadingOne = false;
   // 数据地址
   fakeDataUrl = '';

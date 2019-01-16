@@ -353,7 +353,7 @@ var AppComponent = /** @class */ (function () {
         this.http = http;
         this.msg = msg;
         this.types = { '_0': true, '_1': true, '_2': true, '_3': false, '_4': false };
-        this.date = new Date(2018, 0, 1);
+        this.date = new Date(2019, 0, 1);
         this.isLoadingOne = false;
         // 数据地址
         this.fakeDataUrl = '';

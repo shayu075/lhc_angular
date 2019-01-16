@@ -311,7 +311,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- NG-ZORRO -->\r\n<nz-layout class=\"layout\">\r\n  <nz-header class=\"layout-header\" style=\"height:25%;\">\r\n    <app-line-chart #lineChart></app-line-chart>\r\n    <div class=\"gutter-example\">\r\n        <div nz-row nzGutter=\"24\">\r\n            <div nz-col class=\"gutter-row\" nzSpan=\"3\">\r\n              <div class=\"gutter-box\"><nz-tag nzMode=\"checkable\" [(nzChecked)]=\"types._0\">三十特码</nz-tag></div>\r\n            </div>\r\n            <div nz-col class=\"gutter-row\" nzSpan=\"3\">\r\n              <div class=\"gutter-box\"><nz-tag nzMode=\"checkable\" [(nzChecked)]=\"types._1\">六尾中特</nz-tag></div>\r\n            </div>\r\n            <div nz-col class=\"gutter-row\" nzSpan=\"3\">\r\n              <div class=\"gutter-box\"><nz-tag nzMode=\"checkable\" [(nzChecked)]=\"types._2\">高手两波</nz-tag></div>\r\n            </div>\r\n            <div nz-col class=\"gutter-row\" nzSpan=\"3\">\r\n              <div class=\"gutter-box\"><nz-tag nzMode=\"checkable\" [(nzChecked)]=\"types._3\">七肖中特</nz-tag></div>\r\n            </div>\r\n            <div nz-col class=\"gutter-row\" nzSpan=\"3\">\r\n              <div class=\"gutter-box\"><nz-tag nzMode=\"checkable\" [(nzChecked)]=\"types._4\">三头中特</nz-tag></div>\r\n            </div>\r\n            <div nz-col class=\"gutter-row\" nzSpan=\"9\">\r\n              <div class=\"gutter-box\"><button nz-button nzType=\"primary\" (click)=\"loadOne()\" [nzLoading]=\"isLoadingOne\">Click me!</button></div>\r\n            </div>\r\n          </div>\r\n    </div>\r\n  </nz-header>\r\n  <nz-content style=\"padding:0 50px;\">\r\n    <div style=\"background:#fff; padding: 24px; min-height: 280px;\">\r\n      <app-spiders-list #spider></app-spiders-list>\r\n    </div>\r\n  </nz-content>\r\n  <nz-footer style=\"text-align: center;\">All data ensure authenticity ©2019 By LLL</nz-footer>\r\n</nz-layout>"
+module.exports = "<!-- NG-ZORRO -->\r\n<nz-layout class=\"layout\">\r\n  <nz-header class=\"layout-header\" style=\"height:25%;\">\r\n    <app-line-chart #lineChart></app-line-chart>\r\n    <div class=\"gutter-example\">\r\n        <div nz-row nzGutter=\"24\">\r\n            <div nz-col class=\"gutter-row\" nzSpan=\"3\">\r\n              <div class=\"gutter-box\"><nz-tag nzMode=\"checkable\" [(nzChecked)]=\"types._0\">三十特码</nz-tag></div>\r\n            </div>\r\n            <div nz-col class=\"gutter-row\" nzSpan=\"3\">\r\n              <div class=\"gutter-box\"><nz-tag nzMode=\"checkable\" [(nzChecked)]=\"types._1\">六尾中特</nz-tag></div>\r\n            </div>\r\n            <div nz-col class=\"gutter-row\" nzSpan=\"3\">\r\n              <div class=\"gutter-box\"><nz-tag nzMode=\"checkable\" [(nzChecked)]=\"types._2\">高手两波</nz-tag></div>\r\n            </div>\r\n            <div nz-col class=\"gutter-row\" nzSpan=\"3\">\r\n              <div class=\"gutter-box\"><nz-tag nzMode=\"checkable\" [(nzChecked)]=\"types._3\">七肖中特</nz-tag></div>\r\n            </div>\r\n            <div nz-col class=\"gutter-row\" nzSpan=\"3\">\r\n              <div class=\"gutter-box\"><nz-tag nzMode=\"checkable\" [(nzChecked)]=\"types._4\">三头中特</nz-tag></div>\r\n            </div>\r\n            <div nz-col class=\"gutter-row\" nzSpan=\"4\">\r\n              <nz-month-picker [(ngModel)]=\"date\" nzPlaceHolder=\"开始统计日期\"></nz-month-picker>\r\n            </div>\r\n            <div nz-col class=\"gutter-row\" nzSpan=\"5\">\r\n              <div class=\"gutter-box\"><button nz-button nzType=\"primary\" (click)=\"loadOne()\" [nzLoading]=\"isLoadingOne\">Click me!</button></div>\r\n            </div>\r\n          </div>\r\n    </div>\r\n  </nz-header>\r\n  <nz-content style=\"padding:0 50px;\">\r\n    <div style=\"background:#fff; padding: 24px; min-height: 280px;\">\r\n      <app-spiders-list #spider></app-spiders-list>\r\n    </div>\r\n  </nz-content>\r\n  <nz-footer style=\"text-align: center;\">All data ensure authenticity ©2019 By LLL</nz-footer>\r\n</nz-layout>"
 
 /***/ }),
 
@@ -353,6 +353,7 @@ var AppComponent = /** @class */ (function () {
         this.http = http;
         this.msg = msg;
         this.types = { '_0': true, '_1': true, '_2': true, '_3': false, '_4': false };
+        this.date = new Date(2018, 0, 1);
         this.isLoadingOne = false;
         // 数据地址
         this.fakeDataUrl = '';
@@ -389,7 +390,9 @@ var AppComponent = /** @class */ (function () {
     };
     AppComponent.prototype.loadSpidersDate = function (p_type) {
         var _this = this;
-        this.fakeDataUrl = '/lhc_flask/ps?types=' + p_type;
+        var year = this.date.getFullYear();
+        var month = this.date.getMonth() + 1;
+        this.fakeDataUrl = '/lhc_flask/ps?types=' + p_type + '&year=' + year + '&month=' + month;
         this.getData(function (res) {
             _this.spiderList.list = res;
             _this.spiderList.initLoading = false;

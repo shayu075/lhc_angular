@@ -19,7 +19,10 @@
             <div nz-col class="gutter-row" nzSpan="3">
               <div class="gutter-box"><nz-tag nzMode="checkable" [(nzChecked)]="types._4">三头中特</nz-tag></div>
             </div>
-            <div nz-col class="gutter-row" nzSpan="9">
+            <div nz-col class="gutter-row" nzSpan="4">
+              <nz-month-picker [(ngModel)]="date" nzPlaceHolder="开始统计日期"></nz-month-picker>
+            </div>
+            <div nz-col class="gutter-row" nzSpan="5">
               <div class="gutter-box"><button nz-button nzType="primary" (click)="loadOne()" [nzLoading]="isLoadingOne">Click me!</button></div>
             </div>
           </div>

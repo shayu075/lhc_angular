@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
   lineChartComponent: LineChartComponent;
 
   types = {'_0': true, '_1': true, '_2': true, '_3': false, '_4': false};
+  date = new Date(2018, 0, 1);
   isLoadingOne = false;
   // 数据地址
   fakeDataUrl = '';
@@ -54,13 +55,14 @@ export class AppComponent implements OnInit {
     this.isLoadingOne = false;
   }
 
-
   getData(callback: (res: any) => void): void {
     this.http.get(this.fakeDataUrl).subscribe((res: any) => callback(res));
   }
 
   loadSpidersDate(p_type: string): void {
-    this.fakeDataUrl = '/lhc_flask/ps?types=' + p_type;
+    const year = this.date.getFullYear();
+    const month = this.date.getMonth() + 1;
+    this.fakeDataUrl = '/lhc_flask/ps?types=' + p_type + '&year=' + year + '&month=' + month;
       this.getData((res: any) => {
         this.spiderList.list = res;
         this.spiderList.initLoading = false;

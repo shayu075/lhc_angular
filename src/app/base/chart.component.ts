@@ -77,6 +77,7 @@ export class LineChartComponent implements OnInit {
     console.log('当前赔率：'+sy_pl)
     for (let i = res.length - 1; i > -1; i--) {
       if (res[i].info && res[i].info.tm) {
+        console.dir(res[i])
         sy_tmp = sy_tmp - res[i].cc.length;
         _1248_sy = _1248_sy - (res[i].cc.length * _1248_ru[_1248_step]);
         if (res[i].bingo) {

@@ -56,7 +56,7 @@ export class LineChartComponent implements OnInit {
     ];
   }
 
-  public randomize(res: Array<any>): void {
+  public randomize(res: Array<any>, p_type: string): void {
     const _lineChartDataObject: Array<any> = new Array();
     const _1248lineChartDataObject: Array<any> = new Array();
     const _lineChartLabels: Array<any> = new Array();
@@ -64,13 +64,23 @@ export class LineChartComponent implements OnInit {
     const _1248_ru = [1, 2, 4, 8];
     let _1248_step = 0;
     let _1248_sy = 0;
+    let sy_pl = 49;
+    if(p_type=='1'){
+      sy_pl = 9;
+    }else if(p_type=='2'){
+      sy_pl = 2.7;
+    }else if(p_type=='3'){
+      sy_pl = 1.9;
+    }else if(p_type=='4'){
+      sy_pl = 4.6;
+    }
     for (let i = res.length - 1; i > -1; i--) {
       if (res[i].info && res[i].info.tm) {
         sy_tmp = sy_tmp - res[i].cc.length;
         _1248_sy = _1248_sy - (res[i].cc.length * _1248_ru[_1248_step]);
         if (res[i].bingo) {
-          sy_tmp = 49 + sy_tmp;
-          _1248_sy = _1248_ru[_1248_step] * 49 + _1248_sy;
+          sy_tmp = sy_pl + sy_tmp;
+          _1248_sy = _1248_ru[_1248_step] * sy_pl + _1248_sy;
           if (_1248_step > 0) {
             _1248_step -= 1;
           }

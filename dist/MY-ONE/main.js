@@ -322,7 +322,7 @@ module.exports = "<!-- NG-ZORRO -->\r\n<nz-layout class=\"layout\">\r\n  <nz-hea
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".layout-header {\n  background: rgba(150, 13, 13, 0.2);\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvRTovbGlhb193b3Jrc3BhY2UvbXlfc3R1ZHkvbGhjX2FuZ3VsYXIvc3JjL2FwcC9hcHAuY29tcG9uZW50Lmxlc3MiLCJzcmMvYXBwL2FwcC5jb21wb25lbnQubGVzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLG1DQUFBO0NDQ0giLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50Lmxlc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubGF5b3V0LWhlYWRlciB7XG4gICAgYmFja2dyb3VuZDogcmdiYSgxNTAsIDEzLCAxMywgMC4yKTtcbiAgfVxuIiwiLmxheW91dC1oZWFkZXIge1xuICBiYWNrZ3JvdW5kOiByZ2JhKDE1MCwgMTMsIDEzLCAwLjIpO1xufVxuIl19 */"
+module.exports = ".layout-header {\n  background: rgba(150, 13, 13, 0.2);\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAveTovbGlhb193b3Jrc3BhY2UvbXlfc3R1ZHkvbGhjX2FuZ3VsYXIvc3JjL2FwcC9hcHAuY29tcG9uZW50Lmxlc3MiLCJzcmMvYXBwL2FwcC5jb21wb25lbnQubGVzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLG1DQUFBO0NDQ0giLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50Lmxlc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubGF5b3V0LWhlYWRlciB7XG4gICAgYmFja2dyb3VuZDogcmdiYSgxNTAsIDEzLCAxMywgMC4yKTtcbiAgfVxuIiwiLmxheW91dC1oZWFkZXIge1xuICBiYWNrZ3JvdW5kOiByZ2JhKDE1MCwgMTMsIDEzLCAwLjIpO1xufVxuIl19 */"
 
 /***/ }),
 
@@ -397,7 +397,7 @@ var AppComponent = /** @class */ (function () {
             _this.spiderList.list = res;
             _this.spiderList.initLoading = false;
             _this.spiderList.setFirstCC();
-            _this.lineChartComponent.randomize(res);
+            _this.lineChartComponent.randomize(res, p_type);
         });
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -555,7 +555,7 @@ var LineChartComponent = /** @class */ (function () {
             }
         ];
     };
-    LineChartComponent.prototype.randomize = function (res) {
+    LineChartComponent.prototype.randomize = function (res, p_type) {
         var _lineChartDataObject = new Array();
         var _1248lineChartDataObject = new Array();
         var _lineChartLabels = new Array();
@@ -563,13 +563,26 @@ var LineChartComponent = /** @class */ (function () {
         var _1248_ru = [1, 2, 4, 8];
         var _1248_step = 0;
         var _1248_sy = 0;
+        var sy_pl = 49;
+        if (p_type == '1') {
+            sy_pl = 9;
+        }
+        else if (p_type == '2') {
+            sy_pl = 2.7;
+        }
+        else if (p_type == '3') {
+            sy_pl = 1.9;
+        }
+        else if (p_type == '4') {
+            sy_pl = 4.6;
+        }
         for (var i = res.length - 1; i > -1; i--) {
             if (res[i].info && res[i].info.tm) {
                 sy_tmp = sy_tmp - res[i].cc.length;
                 _1248_sy = _1248_sy - (res[i].cc.length * _1248_ru[_1248_step]);
                 if (res[i].bingo) {
-                    sy_tmp = 49 + sy_tmp;
-                    _1248_sy = _1248_ru[_1248_step] * 49 + _1248_sy;
+                    sy_tmp = sy_pl + sy_tmp;
+                    _1248_sy = _1248_ru[_1248_step] * sy_pl + _1248_sy;
                     if (_1248_step > 0) {
                         _1248_step -= 1;
                     }
@@ -744,7 +757,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\liao_workspace\my_study\lhc_angular\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! y:\liao_workspace\my_study\lhc_angular\src\main.ts */"./src/main.ts");
 
 
 /***/ })

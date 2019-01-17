@@ -583,6 +583,7 @@ var LineChartComponent = /** @class */ (function () {
                 sy_tmp = sy_tmp - res[i].cc.length;
                 _1248_sy = _1248_sy - (res[i].cc.length * _1248_ru[_1248_step]);
                 if (res[i].bingo) {
+                    console.dir(res[i].bingo);
                     sy_tmp = sy_pl + sy_tmp;
                     _1248_sy = _1248_ru[_1248_step] * sy_pl + _1248_sy;
                     if (_1248_step > 0) {

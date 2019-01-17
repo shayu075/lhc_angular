@@ -576,6 +576,7 @@ var LineChartComponent = /** @class */ (function () {
         else if (p_type == '4') {
             sy_pl = 4.6;
         }
+        console.log('当前赔率：' + sy_pl);
         for (var i = res.length - 1; i > -1; i--) {
             if (res[i].info && res[i].info.tm) {
                 sy_tmp = sy_tmp - res[i].cc.length;
